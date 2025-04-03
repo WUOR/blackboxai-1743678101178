@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 
 class User(AbstractUser):
     phone_number = models.CharField(max_length=15, unique=True)
@@ -110,7 +111,7 @@ class CartItem(models.Model):
     color = models.ForeignKey(ProductColor, on_delete=models.SET_NULL, null=True, blank=True)
     size = models.ForeignKey(ProductSize, on_delete=models.SET_NULL, null=True, blank=True)
     quantity = models.PositiveIntegerField(default=1)
-    added_at = models.DateTimeField(auto_now_add=True, default=timezone.now)
+    added_at = models.DateTimeField(auto_now_add=True)
 
     @property
     def total_price(self):
